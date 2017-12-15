@@ -1,5 +1,5 @@
 --[[
--- Meticulous, simple widget library for AwesomeWM
+-- Meticulous, simple resource monitoring library for AwesomeWM
 --
 -- This file belongs to Meticulous, an open-source project distributed under
 -- the GPL license. This license is included as part of the project and is

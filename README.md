@@ -1,2 +1,3 @@
 # meticulous
-Simple widget library for AwesomeWM
+Simple resource monitoring library for AwesomeWM
+
