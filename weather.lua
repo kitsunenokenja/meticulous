@@ -11,17 +11,21 @@
 ]]--
 
 return function(args)
-   args = args or {airport = nil}
-   if args["airport"] == nil then
+   if args["lat"] == nil or args["lon"] == nil then
       return nil
    end
+   local url = "https://api.met.no/weatherapi/locationforecast/1.9"
 
-   local f = io.popen("curl -s http://w1.weather.gov/xml/current_obs/" .. args["airport"] .. ".xml")
+   local f = io.popen(
+      "curl -s '" .. url .. "/?lat=" .. args["lat"] ..
+      "&lon=" .. args["lon"] .. "'"
+   )
    for line in f:lines() do
-      if string.match(line, "temperature_string") ~= nil then
+      if string.match(line, "temperature") ~= nil then
          f:close()
-         return tonumber(string.match(line, "(%d+%.?%d?) C"))
+         return tonumber(string.match(line, "value=\"(.+)\""))
       end
    end
+   return "N/A"
 end
 
