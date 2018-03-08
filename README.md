@@ -268,13 +268,10 @@ awful.key({ modkey }, "#" .. 82, -- NumPad -
 ```
 
 ## weather
-Queries weather.gov for a weather report and parses the air temperature for this
-monitor. Requires passing the four-letter airport code. Based on the example,
-replace the fictious airport code "ABCD" with an actual code. This is another
-basic text box widget as well. Unfortunately the data source for this library
-only reports on weather within the United States.
-
-[Airport code list](http://w1.weather.gov/xml/current_obs/)
+Queries Meteorologisk Institutt for a weather forecast and parses just the
+current temperature. Requires passing latitude and longitude. This is another
+basic text box widget as well.
+[MET Norway API](https://api.met.no/)
 
 ```lua
 weatherwidget = wibox.widget.textbox()
@@ -290,7 +287,7 @@ weather_timer = gears.timer {
    autostart = true,
    call_now = true,
    callback = function()
-      weatherwidget.text = meticulous.weather({airport = "ABCD"}) .. "°C"
+      weatherwidget.text = meticulous.weather({lat = 51.5, lon = 0.1}) .. "°C"
    end
 }
 ```
