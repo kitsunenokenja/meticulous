@@ -104,7 +104,7 @@ cpuwidget_container = wibox.widget {
       self.cpus.mypb1.value = val[2]["usage"]
       self.cpus.mypb2.value = val[3]["usage"]
       self.cpus.mypb3.value = val[4]["usage"]
-      self.cores = val
+      self._cores = val
    end
 }
 cpuwidget_container_t = awful.tooltip({
@@ -295,7 +295,7 @@ weather_timer = gears.timer {
 ## net
 Network interface monitor. Reports on the average bandwidth consumption for
 upstream and downstream in bytes. Specifying the interface is required when
-calling this library. 
+calling this library.
 
 For example, if your ethernet interface is `eth0`, pass a table to meticulous as
 follows:
