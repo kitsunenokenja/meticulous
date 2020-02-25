@@ -18,3 +18,4 @@ return function()
    return math.floor(freq / 100000) / 10
 end
 
+-- vim: set ts=3 sw=3 et :

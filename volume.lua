@@ -24,3 +24,4 @@ return function(args)
    return tonumber(vol)
 end
 
+-- vim: set ts=3 sw=3 et :

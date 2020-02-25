@@ -29,3 +29,4 @@ return function(args)
    return "N/A"
 end
 
+-- vim: set ts=3 sw=3 et :
