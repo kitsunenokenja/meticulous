@@ -10,17 +10,22 @@
 -- Copyright (c) 2017
 ]]--
 
-local eth = {
-   last_down = nil,
-   last_up = nil,
-   down = 0,
-   up = 0,
-}
+local devices = {}
 
 return function(args)
    args = args or {interface = nil}
    if args["interface"] == nil then
       return nil
+   end
+   local net = args["interface"]
+
+   if devices[args["interface"]] == nil then
+      devices[net] = {
+         last_down = nil,
+         last_up = nil,
+         down = 0,
+         up = 0
+      }
    end
 
    local f = io.popen("cat /proc/net/dev | grep " .. args["interface"])
@@ -30,18 +35,18 @@ return function(args)
    local down = tonumber(string.match(line, ":%s+(%d+)"))
    local up = tonumber(string.match(line, "(%d+)%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d+%s+%d$"))
 
-   if eth["last_down"] == nil then
-      eth["last_down"] = down
-      eth["last_up"] = up
-      eth["down"] = 0
-      eth["up"] = 0
+   if devices[net]["last_down"] == nil then
+      devices[net]["last_down"] = down
+      devices[net]["last_up"] = up
+      devices[net]["down"] = 0
+      devices[net]["up"] = 0
    else
-      eth["down"] = down - eth["last_down"]
-      eth["up"] = up - eth["last_up"]
-      eth["last_down"] = down
-      eth["last_up"] = up
+      devices[net]["down"] = down - devices[net]["last_down"]
+      devices[net]["up"] = up - devices[net]["last_up"]
+      devices[net]["last_down"] = down
+      devices[net]["last_up"] = up
    end
 
-   return eth
+   return devices[net]
 end
 
