@@ -11,12 +11,13 @@
 ]]--
 
 local meticulous = {
-   cpufreq = require("meticulous.cpufreq"),
+   battery = require("meticulous.battery"),
    cpu = require("meticulous.cpu"),
-   volume = require("meticulous.volume"),
-   sensors = require("meticulous.sensors"),
-   net = require("meticulous.net"),
+   cpufreq = require("meticulous.cpufreq"),
    mem = require("meticulous.mem"),
+   net = require("meticulous.net"),
+   sensors = require("meticulous.sensors"),
+   volume = require("meticulous.volume"),
    weather = require("meticulous.weather")
 }
 
